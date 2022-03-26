@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-3 | QUIZ GAME</title>
+    <style>
+      .start_btn,
+.quiz_box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.quiz_box.activeInfo{
+     opacity: 1;
+     z-index: 5;
+     pointer-events: auto;
+     transform: translate(-50%, -50%) scale(1);
+ }
+
+.start_btn button{
+    font-size: 25px;
+    font-weight: 500;
+    color: #007bff;
+    padding: 15px 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+}
+.quiz_box{
+    width: 540px;
+    background: #fff;
+    border-radius: 5px;
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+            .quiz_box{
+                width: 540px;
+                background: #fff;
+                border-radius: 5px;
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+            }
+            
+            .quiz_box .info-title{
+                height: 60px;
+                width: 100%;
+                border-bottom: 1px solid lightgrey;
+                display: flex;
+                align-items: center;
+                padding: 0 30px;
+                border-radius: 5px 5px 0 0;
+                font-size: 20px;
+                font-weight: 600;
+            }
+            .quiz_box .info-list{
+                padding: 15px 30px;
+            }
+            
+            .quiz_box .info-list .info{
+                margin: 5px 0;
+                font-size: 17px;
+            }
+            
+            .quiz_box .info-list .info span{
+                font-weight: 600;
+                color: #007bff;
+            }
+            .quiz_box .buttons{
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding: 0 30px;
+                border-top: 1px solid lightgrey;
+            }
+            
+            .quiz_box .buttons button{
+                margin: 0 5px;
+                height: 40px;
+                width: 100px;
+                font-size: 16px;
+                font-weight: 500;
+                cursor: pointer;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+                border: 1px solid #007bff;
+                transition: all 0.3s ease;
+            }
+
+            .quiz_box header{
+                position: relative;
+                z-index: 2;
+                height: 70px;
+                padding: 0 30px;
+                background: #fff;
+                border-radius: 5px 5px 0 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.1);
+            }
+            .quiz_box header .title{
+                font-size: 20px;
+                font-weight: 600;
+            }
+            .quiz_box header .timer{
+                color: #004085;
+                background: #cce5ff;
+                border: 1px solid #b8daff;
+                height: 45px;
+                padding: 0 8px;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 145px;
+            }
+            
+            .quiz_box header .timer .time_left_txt{
+                font-weight: 400;
+                font-size: 17px;
+                user-select: none;
+            }
+            
+            .quiz_box header .timer .timer_sec{
+                font-size: 18px;
+                font-weight: 500;
+                height: 30px;
+                width: 45px;
+                color: #fff;
+                border-radius: 5px;
+                line-height: 30px;
+                text-align: center;
+                background: #343a40;
+                border: 1px solid #343a40;
+                user-select: none;
+            }
+            
+ h2{
+    margin-bottom: 17px;
+    margin: 20px 10px;
+    padding: 0% 10px;
+}
+.inner-div {
+    width: 40vw;
+    background-color: rgb(235, 233, 233);
+    padding: 3rem 8rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem -0.7rem Orgba(0, 0, o, 0.4);
+    margin: 20px 20px 10px 20px;
+}
+#submit,
+.btn {
+  padding: 10px 10px 10px 10px;
+  outline: none;
+  display: block;
+  margin: auto;
+  border: none;
+  text-transform: uppercase;
+  color: I#fff;
+  background-color: #74b9ff;
+  margin: 5% 60% 0% 40%;
+}
+#submit:hover{
+  background-color: #0984e3;
+}
+
+#showScore {
+    background-color: #dfe6e9;
+    margin-top: 3rem;
+    padding: 3rem 4rem;
+    box-shadow: 0 1rem 1rem -0.7rem Orgba(0, 0, 0, 0.4);
+  }
+.scoreArea {
+  display: none ;
+}
+  #showScore h3 {
+    text-align: center;
+    background-color: bisque;
+  }
+
+  footer{
+    height: 60px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid lightgrey;
+}
+
+footer .total_que span{
+    display: flex;
+    user-select: none;
+}
+
+footer .total_que span p{
+    font-weight: 500;
+    padding: 0 5px;
+}
+
+footer .total_que span p:first-child{
+    padding-left: 0px;
+}
+
+footer button{
+    height: 40px;
+    padding: 0 13px;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    background: #007bff;
+    border: 1px solid #007bff;
+    line-height: 10px;
+    opacity: 1;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+}
+
+footer button:hover{
+    background: #0263ca;
+}
+
+footer button.show{
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="start_btn"><button>Start Quiz</button></div>
+
+    <div class="quiz_box">
+        <header>
+            <div class="title">A-3 | QUIZ GAME</div>
+            <div class="timer">
+                <div class="time_left_txt">Time Left</div>
+                <div class="timer_sec">15</div>
+            </div>
+        </header>
+        <div class="inner_div">
+        <h2 class="question">Question comes here</h2>
+        <ul style="list-style: none;">
+           <li>
+               <input type="radio" name="answer" id="ans1" class="answer">
+               <label for="ans1" id="option1" > Answer Option </label>
+           </li>
+           <li>
+               <input type="radio" name="answer" id="ans2" class="answer">
+               <label for="ans2" id="option2" > Answer Option </label>
+           </li>
+           <li>
+               <input type="radio" name="answer" id="ans3" class="answer">
+               <label for="ans3" id="option3" > Answer Option </label>
+           </li>
+           <li>
+               <input type="radio" name="answer" id="ans4" class="answer">
+               <label for="ans4" id="option4" > Answer Option </label>
+        </ul>
+        <footer>
+            <div class="total_que">
+            </div>
+            <button class="next_btn">Next Que</button>
+        </footer>
+        <div class="result_box">
+            <div id="showScore" class="scoreArea"> </div>
+     </div>
+
+    <script>
+      quizDB = [
+    {
+        question: "Q1: What is the full form of HTML?",
+        a: "Hello To My Land",
+        b: "Hey Text Markup Language",
+        c: "HyperText Makeup Language",
+        d: "Hypertext Markup Language",
+        ans: "ans4"
+    },
+    {
+        question: " Q2: What is the full form of CSS?",
+        a: "Cascading Style Sheets",
+        b: "Cascading Style Sheep",
+        c: "Cartoon Style Sheets",
+        d: "Cascading Super Sheets",
+        ans: "ans1"
+    },
+    {
+        question: "Q3: What is the full form of HTTP?",
+        a: "Hypertext Transfer Product",
+        b: "Hypertext Test Protocol",
+        c: "Hey Transfer Protocol",
+        d: "Hypertext Transfer Protocol",
+        ans: "ans4"  
+    },
+    {
+        question: "Q4: What is the full form of JS?",
+        a: "Javascript",
+        b: "JavaSuper",
+        c: "JustScript",
+        d: "JordenShoes",
+        ans: "ans1"
+    }
+];
+const question = document.querySelector('.question');
+const option1 = document.querySelector('#option1');
+const option2 = document.querySelector('#option2');
+const option3 = document.querySelector('#option3');
+const option4 = document.querySelector('#option4');
+const submit = document.querySelector('.next_btn');
+
+const answers = document.querySelectorAll('.answer');
+const showScore = document.querySelector('#showScore')
+let questionCount = 0;
+let score = 0;
+const loadQuestion = () => {
+    const questionList = quizDB[questionCount];
+    question.innerText = questionList.question;
+    option1.innerText = questionList.a;
+    option2.innerText = questionList.b;
+    option3.innerText = questionList.c;
+    option4.innerText = questionList.d;
+}
+
+loadQuestion();
+const getCheckedAnswer = () => {
+    let answer;
+    answers.forEach((curAnsElem) => {
+        if(curAnsElem.checked){
+            answer = curAnsElem.id;
+        } 
+    });
+    return answer;
+};
+const deselectAll =() => {
+    answers.forEach((curAnsElem) => curAnsElem.checked = false );
+}
+submit.addEventListener('click',() => {
+    const checkedAnswer = getCheckedAnswer();
+    console.log(checkedAnswer);
+    if (checkedAnswer === quizDB[questionCount].ans) {
+        score++
+    }
+    questionCount++;
+    deselectAll();
+    if (questionCount < quizDB.length) {
+        loadQuestion();
+    } else{
+        showScore.innerHTML = `
+        <h3>You scored ${score}/${quizDB.length}</h3>
+        <button class="btn" onclick="location.reload()">PLAY AGAIN</button>
+        `;
+        showScore.classList.remove('scoreArea');
+    }
+    clearInterval(counter)
+    startTimer(timeValue);
+});
+
+
+const start_btn= document.querySelector(".start_btn button");
+const quiz_box = document.querySelector(".quiz_box");
+const time_line = document.querySelector("header .time_line");
+const timeText = document.querySelector(".timer .time_left_txt");
+const timeCount = quiz_box.querySelector(".timer .timer_sec");
+
+let counter;
+let timeValue = 15;
+
+start_btn.onclick = ()=>{
+    quiz_box.classList.add("activeInfo");
+    startTimer(15); //calling startTimer function
+}
+
+function startTimer(time){
+    counter = setInterval(timer, 900);
+    function timer(){
+        timeCount.textContent = time;
+        time--;
+        if(time < 9){
+            let addZero = timeCount.textContent;
+            timeCount.textContent= "0" + addZero;
+        }
+        if(time < 0){
+            clearInterval(counter);
+            timeCount.textContent= "00";
+        }
+    }
+    };
+
+function optionSelected(answer){
+    clearInterval(counter);
+}
+       </script>
+</body>
+</html>
